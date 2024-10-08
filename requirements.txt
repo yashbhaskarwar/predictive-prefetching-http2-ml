@@ -1,0 +1,6 @@
+flask
+hypercorn
+tensorflow
+pandas
+numpy
+scikit-learn
