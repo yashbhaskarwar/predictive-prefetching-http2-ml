@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Predictive Prefetching Demo</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="{{ url_for('static', filename='prefetch.js') }}" defer></script>
+    <style>
+        /* Same CSS from index.html, with additional styling for cart page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header, footer {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 5px 10px;
+            background-color: #3e8e41;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #45a049;
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+        .cart-items {
+            display: table;
+            margin: 20px auto;
+            width: 80%;
+            border-collapse: collapse;
+        }
+        .cart-items th, .cart-items td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        .action-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+        }
+        .action-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Shopping Cart</h1>
+        <nav>
+            <a href="index.html" class="nav-link" data-event="page_view">Home</a>
+            <a href="product.html" class="nav-link" data-event="product_view">Product Details</a>
+            <a href="cart.html" class="nav-link" data-event="add_to_cart">Cart</a>
+            <a href="login.html" class="nav-link" data-event="login">Login</a>
+            <a href="checkout.html" class="nav-link" data-event="purchase">Checkout</a>
+			<a href="logout.html" class="nav-link" data-event="logout">Logout</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Your Cart</h2>
+        <table class="cart-items">
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>Product Name</td>
+                <td>1</td>
+                <td>$99.99</td>
+                <td>$99.99</td>
+            </tr>
+        </table>
+        <button class="action-button" data-event="checkout">Proceed to Checkout</button>
+    </main>
+    <footer>
+        <p>&copy; 2024 Predictive Prefetching Demo</p>
+    </footer>
+</body>
+</html>
