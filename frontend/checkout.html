@@ -1,91 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - Predictive Prefetching Demo</title>
-    <link rel="stylesheet" href="/css/styles.css">
-    <script src="{{ url_for('static', filename='prefetch.js') }}" defer></script>
-    <style>
-        /* Same CSS from index.html, with additional styling for checkout page */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-        header, footer {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            padding: 5px 10px;
-            background-color: #3e8e41;
-            transition: background-color 0.3s;
-        }
-        nav a:hover {
-            background-color: #45a049;
-        }
-        main {
-            padding: 20px;
-            text-align: center;
-        }
-        .checkout-info {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-        }
-        .checkout-info div {
-            margin-right: 30px;
-        }
-        .action-button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: white;
-            background-color: #4CAF50;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .action-button:hover {
-            background-color: #45a049;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Checkout | Predictive Prefetch Demo Store</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Checkout</h1>
-        <nav>
-            <a href="index.html" class="nav-link" data-event="page_view">Home</a>
-            <a href="product.html" class="nav-link" data-event="product_view">Product Details</a>
-            <a href="cart.html" class="nav-link" data-event="add_to_cart">Cart</a>
-            <a href="login.html" class="nav-link" data-event="login">Login</a>
-            <a href="checkout.html" class="nav-link" data-event="purchase">Checkout</a>
-			<a href="logout.html" class="nav-link" data-event="logout">Logout</a>
-        </nav>
-    </header>
-    <main>
-        <section class="checkout-info">
-            <div>
-                <h3>Billing Address</h3>
-                <p>Enter your billing address here</p>
-            </div>
-            <div>
-                <h3>Payment Method</h3>
-                <p>Enter payment details here</p>
-            </div>
-        </section>
-        <button class="action-button" data-event="purchase">Confirm Order</button>
-    </main>
-    <footer>
-        <p>&copy; 2024 Predictive Prefetching Demo</p>
-    </footer>
+  <header>
+    <h1>Checkout</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="product.html">Products</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <p>Complete checkout.</p>
+      <a href="logout.html">Place Order</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>Predictive Prefetching Demo</p>
+  </footer>
+
+  <script src="js/script.js"></script>
 </body>
 </html>

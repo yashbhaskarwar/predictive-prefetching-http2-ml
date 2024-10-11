@@ -1,117 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details - Predictive Prefetching Demo</title>
-    <link rel="stylesheet" href="/css/styles.css">
-    <script src="{{ url_for('static', filename='prefetch.js') }}" defer></script>
-    <style>
-        /* Same CSS from index.html, with additional styling for product page */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-        header, footer {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            padding: 5px 10px;
-            background-color: #3e8e41;
-            transition: background-color 0.3s;
-        }
-        nav a:hover {
-            background-color: #45a049;
-        }
-        main {
-            padding: 20px;
-            text-align: center;
-        }
-        .product-info {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-        }
-        .product-info img {
-            width: 300px;
-            height: 300px;
-            margin-right: 20px;
-        }
-        .product-info .details {
-            text-align: left;
-            max-width: 400px;
-        }
-        footer {
-            text-align: center;
-            padding: 10px 0;
-        }
-        .action-button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: white;
-            background-color: #4CAF50;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .action-button:hover {
-            background-color: #45a049;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Products | Predictive Prefetch Demo Store</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Product Details</h1>
-        <nav>
-            <a href="index.html" class="nav-link" data-event="page_view">Home</a>
-            <a href="product.html" class="nav-link" data-event="product_view">Product Details</a>
-            <a href="cart.html" class="nav-link" data-event="add_to_cart">Cart</a>
-            <a href="login.html" class="nav-link" data-event="login">Login</a>
-            <a href="checkout.html" class="nav-link" data-event="purchase">Checkout</a>
-			<a href="logout.html" class="nav-link" data-event="logout">Logout</a>
-        </nav>
-    </header>
-    <main>
-        <section class="product-info">
-            <img src="https://via.placeholder.com/100" alt="Product Image">
-            <div class="details">
-                <h2>Random Product 1</h2>
-                <p>Description of the product goes here. It can be a short paragraph detailing the features.</p>
-                <p><strong>Price:</strong> $99.99</p>
-                <button href="cart.html" class="action-button" data-event="add_to_cart">Add to Cart</button>
-            </div>
-        </section>
-		<section class="product-info">
-            <img src="https://via.placeholder.com/200" alt="Product Image">
-            <div class="details">
-                <h2>Random Product 2</h2>
-                <p>Description of the product goes here. It can be a short paragraph detailing the features.</p>
-                <p><strong>Price:</strong> $99.99</p>
-                <button href="cart.html" class="action-button" data-event="add_to_cart">Add to Cart</button>
-            </div>
-        </section>
-		<section class="product-info">
-            <img src="https://via.placeholder.com/300" alt="Product Image">
-            <div class="details">
-                <h2>Random Product 3</h2>
-                <p>Description of the product goes here. It can be a short paragraph detailing the features.</p>
-                <p><strong>Price:</strong> $99.99</p>
-                <button href="cart.html" class="action-button" data-event="add_to_cart">Add to Cart</button>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Predictive Prefetching Demo</p>
-    </footer>
+  <header>
+    <h1>Products</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="product.html">Products</a>
+      <a href="cart.html">Cart</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Featured Items</h2>
+      <ul>
+        <li>Demo Product 1 <button>Add to Cart</button></li>
+        <li>Demo Product 2 <button>Add to Cart</button></li>
+        <li>Demo Product 3 <button>Add to Cart</button></li>
+      </ul>
+      <p>PRODUCTS</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Predictive Prefetching Demo</p>
+  </footer>
+
+  <script src="js/script.js"></script>
 </body>
 </html>

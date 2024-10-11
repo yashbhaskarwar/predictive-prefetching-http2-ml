@@ -1,98 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Predictive Prefetching Demo</title>
-    <link rel="stylesheet" href="/css/styles.css">
-    <script src="{{ url_for('static', filename='prefetch.js') }}" defer></script>
-    <style>
-        /* Same CSS from index.html, with additional styling for login page */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-        header, footer {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            padding: 5px 10px;
-            background-color: #3e8e41;
-            transition: background-color 0.3s;
-        }
-        nav a:hover {
-            background-color: #45a049;
-        }
-        main {
-            padding: 20px;
-            text-align: center;
-        }
-        form {
-            max-width: 400px;
-            margin: 0 auto;
-            text-align: left;
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        form label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        form input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        form button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        form button:hover {
-            background-color: #45a049;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Login | Predictive Prefetch Demo Store</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Login</h1>
-        <nav>
-            <a href="index.html" class="nav-link" data-event="page_view">Home</a>
-            <a href="product.html" class="nav-link" data-event="product_view">Product Details</a>
-            <a href="cart.html" class="nav-link" data-event="add_to_cart">Cart</a>
-            <a href="login.html" class="nav-link" data-event="login">Login</a>
-            <a href="checkout.html" class="nav-link" data-event="purchase">Checkout</a>
-			<a href="logout.html" class="nav-link" data-event="logout">Logout</a>
-        </nav>
-    </header>
-    <main>
-        <form>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <button type="submit">Login</button>
-        </form>
-    </main>
-    <footer>
-        <p>&copy; 2024 Predictive Prefetching Demo</p>
-    </footer>
+  <header>
+    <h1>Login</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="product.html">Products</a>
+      <a href="cart.html">Cart</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <form>
+        <label>Email</label>
+        <input type="email" placeholder="demo@example.com">
+        <label>Password</label>
+        <input type="password" placeholder="password">
+        <button type="submit">Login</button>
+      </form>
+      <p>Form is static.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Predictive Prefetching Demo</p>
+  </footer>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
