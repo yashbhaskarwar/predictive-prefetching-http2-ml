@@ -1,0 +1,50 @@
+{
+  "index": {
+    "url": "/index.html",
+    "assets": [
+      "/css/styles.css",
+      "/js/script.js",
+      "/js/prefetch.js"
+    ]
+  },
+  "product": {
+    "url": "/product.html",
+    "assets": [
+      "/css/styles.css",
+      "/js/script.js",
+      "/js/prefetch.js"
+    ]
+  },
+  "cart": {
+    "url": "/cart.html",
+    "assets": [
+      "/css/styles.css",
+      "/js/script.js",
+      "/js/prefetch.js"
+    ]
+  },
+  "login": {
+    "url": "/login.html",
+    "assets": [
+      "/css/styles.css",
+      "/js/script.js",
+      "/js/prefetch.js"
+    ]
+  },
+  "checkout": {
+    "url": "/checkout.html",
+    "assets": [
+      "/css/styles.css",
+      "/js/script.js",
+      "/js/prefetch.js"
+    ]
+  },
+  "logout": {
+    "url": "/logout.html",
+    "assets": [
+      "/css/styles.css",
+      "/js/script.js",
+      "/js/prefetch.js"
+    ]
+  }
+}
