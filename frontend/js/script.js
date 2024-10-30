@@ -20,17 +20,38 @@
     return "index";
   }
 
-  function logPageView() {
+  async function logPageView() {
     const sessionId = getSessionId();
     const page = getCurrentPageName();
 
-    console.log("[PP-TRACK]", {
+    console.log("[PP-TRACK] page_view", {
       session_id: sessionId,
       page: page,
       url: window.location.pathname
     });
 
-    // Backend logging and ML prediction will be added in later steps
+    try {
+      const res = await fetch("/api/event", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          session_id: sessionId,
+          current_page: page
+        })
+      });
+
+      if (!res.ok) {
+        console.warn("[PP-TRACK] backend rejected event", res.status);
+        return;
+      }
+
+      const data = await res.json();
+      console.log("[PP-TRACK] backend ack", data);
+    } catch (err) {
+      console.warn("[PP-TRACK] failed to send event", err);
+    }
   }
 
   window.addEventListener("load", logPageView);
