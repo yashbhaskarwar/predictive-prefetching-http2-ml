@@ -1,6 +1,8 @@
 from pathlib import Path
 from flask import Flask, request, jsonify, send_from_directory
 
+from model_loader import NextPagePredictor  # NEW
+
 BACKEND_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = BACKEND_DIR.parent
 FRONTEND_DIR = PROJECT_ROOT / "frontend"
@@ -13,20 +15,23 @@ app = Flask(
 
 SESSION_HISTORY = {}
 
+PREDICTOR = None
+try:
+    PREDICTOR = NextPagePredictor()
+    print("[PP] NextPagePredictor loaded.")
+except Exception as e:
+    print(f"[PP] NextPagePredictor not active: {e}")
+
 @app.route("/")
 def index():
-    # Main page
     return send_from_directory(FRONTEND_DIR, "index.html")
-
 
 @app.route("/<path:path>")
 def static_files(path):
     target = FRONTEND_DIR / path
     if target.is_file():
         return send_from_directory(FRONTEND_DIR, path)
-    # Fallback: if path is empty or invalid, send index
     return send_from_directory(FRONTEND_DIR, "index.html")
-
 
 @app.route("/api/event", methods=["POST"])
 def log_event():
@@ -42,13 +47,21 @@ def log_event():
     history.append(current_page)
     SESSION_HISTORY[session_id] = history
 
+    predicted_pages = []
+    if PREDICTOR is not None:
+        try:
+            predicted_pages = PREDICTOR.predict_top_k(history, k=2)
+        except Exception as e:
+            print(f"[PP] prediction error: {e}")
+            predicted_pages = []
+
     return jsonify({
         "status": "ok",
         "session_id": session_id,
         "current_page": current_page,
-        "history_length": len(history)
+        "history_length": len(history),
+        "predicted_pages": predicted_pages
     })
 
 if __name__ == "__main__":
-    # Dev mode. Later we will document HTTP/2 with Hypercorn.
     app.run(host="0.0.0.0", port=5000, debug=True)
