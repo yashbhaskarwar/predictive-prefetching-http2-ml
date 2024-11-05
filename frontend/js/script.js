@@ -30,6 +30,11 @@ async function logPageView() {
 
     if (Array.isArray(data.predicted_pages)) {
       console.log("[PP-TRACK] predicted next pages:", data.predicted_pages);
+
+      window.PP_PREFETCH = {
+        lastPage: page,
+        predictedPages: data.predicted_pages
+      };
     }
   } catch (err) {
     console.warn("[PP-TRACK] failed to send event", err);
