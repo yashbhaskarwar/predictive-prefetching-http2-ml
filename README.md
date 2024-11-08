@@ -16,22 +16,16 @@ This project predicts the next page a user will visit based on his behaviour on 
 pip install -r requirements.txt
 
 2. Training the model
-
 (The repository does not include the trained model file.)
-
 cd backend
 python train_model.py
-
 (This will create a model.h5 and label_mapping.json)
 
 3. Running the backend
-
 cd backend
 python app.py
 
-
 Then open: http://localhost:5000
-
 (This will open the demo store page)
 ```
 
