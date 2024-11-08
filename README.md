@@ -9,4 +9,34 @@ This project predicts the next page a user will visit based on his behaviour on 
 3. Serve the site through a Python backend.
 4. Use predictions to prefetch the most likely next page and its assets.
 
+## Setup
+```bash
 
+1. Install dependencies
+pip install -r requirements.txt
+
+2. Training the model
+
+(The repository does not include the trained model file.)
+
+cd backend
+python train_model.py
+
+(This will create a model.h5 and label_mapping.json)
+
+3. Running the backend
+
+cd backend
+python app.py
+
+
+Then open: http://localhost:5000
+
+(This will open the demo store page)
+```
+
+## Workflow
+The browser sends events to /api/event <br>
+The backend logs navigation history <br>
+'model.h5' returns predicted_pages and Link headers <br>
+Client script adds prefetch hints based on these predictions <br>
