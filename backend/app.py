@@ -109,4 +109,6 @@ def build_link_header(predicted_pages):
     return ", ".join(links)
 
 if __name__ == "__main__":
+    # Development Server
+    # For HTTP/2, run this app with Hypercorn (instructed in README)
     app.run(host="0.0.0.0", port=5000, debug=True)
