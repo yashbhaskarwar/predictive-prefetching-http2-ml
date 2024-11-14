@@ -24,9 +24,21 @@ python train_model.py
 3. Running the backend
 cd backend
 python app.py
-
 Then open: http://localhost:5000
 (This will open the demo store page)
+```
+
+### Run with HTTP/2.0 using Hypercorn
+```bash
+Steps:
+1. Generate a self-signed certificate (for local testing)
+openssl req -x509 -newkey rsa:2048 -nodes -keyout key.pem -out cert.pem -days 365
+
+2. Start the Flask app using Hypercorn with HTTP/2.0
+cd backend
+hypercorn app:app --bind 0.0.0.0:8443 --certfile cert.pem --keyfile key.pem --alpn h2
+Then open:
+https://localhost:8443
 ```
 
 ## Workflow
