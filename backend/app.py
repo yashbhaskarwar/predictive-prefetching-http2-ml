@@ -8,6 +8,7 @@ BACKEND_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = BACKEND_DIR.parent
 FRONTEND_DIR = PROJECT_ROOT / "frontend"
 PAGES_CONFIG_PATH = BACKEND_DIR / "pages_config.json" 
+MAX_HISTORY_PER_SESSION = 50  # to avoid unbounded growth
 
 # Load pages config
 if PAGES_CONFIG_PATH.exists():
@@ -16,6 +17,11 @@ if PAGES_CONFIG_PATH.exists():
 else:
   PAGES_CONFIG = {}
   print("Warning: pages_config.json not found.")
+
+# Allowed logical pages (for basic validation)
+ALLOWED_PAGES = set(PAGES_CONFIG.keys()) if PAGES_CONFIG else {
+    "index", "product", "cart", "login", "checkout", "logout"
+}
 
 app = Flask(
     __name__,
@@ -53,8 +59,15 @@ def log_event():
     if not current_page:
         return jsonify({"error": "current_page is required"}), 400
 
+    # Basic validation
+    if current_page not in ALLOWED_PAGES:
+        print(f"[PP] Warning: unknown page '{current_page}' from session {session_id}, normalizing to 'index'")
+        current_page = "index"
+
     history = SESSION_HISTORY.get(session_id, [])
     history.append(current_page)
+    if len(history) > MAX_HISTORY_PER_SESSION:
+        history = history[-MAX_HISTORY_PER_SESSION:]
     SESSION_HISTORY[session_id] = history
 
     predicted_pages = []
@@ -62,26 +75,25 @@ def log_event():
         try:
             predicted_pages = PREDICTOR.predict_top_k(history, k=2)
         except Exception as e:
-            print(f"[PP] prediction error: {e}")
+            print(f"[PP] prediction error for session {session_id}: {e}")
             predicted_pages = []
 
-        response_body = {
+    response_body = {
         "status": "ok",
         "session_id": session_id,
         "current_page": current_page,
         "history_length": len(history),
         "predicted_pages": predicted_pages
-        }
+    }
 
-        resp = jsonify(response_body)
+    resp = jsonify(response_body)
 
-        # Add Link header with prefetch/preload hints if we have predictions
-        link_header = build_link_header(predicted_pages)
-        if link_header:
-            resp.headers["Link"] = link_header
-            print(f"[PP] Link header set: {link_header}")
+    link_header = build_link_header(predicted_pages)
+    if link_header:
+        resp.headers["Link"] = link_header
+        print(f"[PP] Link header set for session {session_id}: {link_header}")
 
-        return resp
+    return resp
 
 def build_link_header(predicted_pages):
     if not predicted_pages:
