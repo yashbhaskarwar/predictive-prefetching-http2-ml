@@ -46,3 +46,9 @@ The browser sends events to /api/event <br>
 The backend logs navigation history <br>
 'model.h5' returns predicted_pages and Link headers <br>
 Client script adds prefetch hints based on these predictions <br>
+
+## Working
+Each page view is sent to the backend and added to the session history. <br>
+The model predicts the most likely next page based on this history. <br>
+That next page is hinted using `Link` headers and `<link rel="prefetch">`. <br>
+When the user actually clicks that page, many resources are already fetched, so it loads faster in practice. <br>
