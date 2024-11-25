@@ -1,3 +1,5 @@
+# Flask backend: serves frontend files and handles navigation tracking and prediction
+
 from pathlib import Path
 from flask import Flask, request, jsonify, send_from_directory
 

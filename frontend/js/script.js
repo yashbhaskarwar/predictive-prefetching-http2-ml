@@ -1,3 +1,5 @@
+// Tracks user navigation and sends page events to the backend for prediction
+
 async function logPageView() {
   const sessionId = getSessionId();
   const page = getCurrentPageName();

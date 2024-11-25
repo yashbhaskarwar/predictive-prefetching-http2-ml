@@ -11,7 +11,7 @@ MODEL_PATH = BASE_DIR / "model.h5"
 MAPPING_PATH = BASE_DIR / "label_mapping.json"
 MAX_SEQUENCE_LEN = 4
 
-
+# Wraps the trained LSTM model and exposes a simple predict_top_k() interface
 class NextPagePredictor:
     def __init__(self,
                  model_path: Path = MODEL_PATH,

@@ -1,3 +1,5 @@
+// Reads predicted pages and injects <link rel="prefetch"> to load them early
+
 (function () {
   function pageToUrl(page) {
     switch (page) {
