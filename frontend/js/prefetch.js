@@ -35,7 +35,7 @@
     link.setAttribute("data-pp-prefetch", url);
     document.head.appendChild(link);
 
-    console.log("[PP-PREFETCH] added prefetch for", url);
+    console.log("[PrefetchDemo] prefetching", url);
   }
 
   function initPrefetch() {
