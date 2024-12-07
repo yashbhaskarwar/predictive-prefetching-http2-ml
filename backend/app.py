@@ -122,6 +122,11 @@ def build_link_header(predicted_pages):
 
     return ", ".join(links)
 
+@app.route("/api/health")
+def health_check():
+    """Simple health endpoint to verify backend is live."""
+    return jsonify({"status": "healthy", "predictor_loaded": PREDICTOR is not None})
+
 if __name__ == "__main__":
     # Development Server
     # For HTTP/2, run this app with Hypercorn (instructed in README)
