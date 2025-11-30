@@ -7,17 +7,15 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Embedding, LSTM, Dense
 from tensorflow.keras.utils import to_categorical
+from datetime import datetime
 
 BASE_DIR = Path(__file__).resolve().parent
-
 NAV_DATA_PATH = BASE_DIR / "navigation_data.csv"
 MODEL_PATH = BASE_DIR / "model.h5"
 MAPPING_PATH = BASE_DIR / "label_mapping.json"
-
 MAX_SEQUENCE_LEN = 4
 EMBEDDING_DIM = 8
 LSTM_UNITS = 16
-
 
 def load_navigation_data(path: Path) -> pd.DataFrame:
     df = pd.read_csv(path, comment="#")
@@ -25,7 +23,6 @@ def load_navigation_data(path: Path) -> pd.DataFrame:
     if not required_cols.issubset(df.columns):
         raise ValueError(f"navigation_data.csv must contain {required_cols}")
     return df
-
 
 def build_sequences(df: pd.DataFrame, label_encoder: LabelEncoder):
     df = df.sort_values(["session_id", "step"])
@@ -50,7 +47,6 @@ def build_sequences(df: pd.DataFrame, label_encoder: LabelEncoder):
     y = to_categorical(targets, num_classes=len(label_encoder.classes_))
     return X, y
 
-
 def build_model(num_classes: int):
     model = Sequential([
         Embedding(input_dim=num_classes,
@@ -65,7 +61,6 @@ def build_model(num_classes: int):
         metrics=["accuracy"]
     )
     return model
-
 
 def main():
     df = load_navigation_data(NAV_DATA_PATH)
@@ -94,12 +89,12 @@ def main():
     model.save(MODEL_PATH)
 
     print(f"Saving label mapping to {MAPPING_PATH}")
-    mapping = {"classes": le.classes_.tolist()}
+    mapping = {"classes": le.classes_.tolist(),
+               "trained_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
     with open(MAPPING_PATH, "w") as f:
         json.dump(mapping, f, indent=2)
 
     print("Done.")
-
 
 if __name__ == "__main__":
     main()
